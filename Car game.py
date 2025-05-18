@@ -31,37 +31,46 @@ font = pygame.font.Font("freesansbold.ttf", 50)
 
 #Starting cords for Player car
 Car_x = 325
-Car_y = 300
+Car_y = 525
    
 #Defining game loop
 def game_loop():
     global Car_x, Car_y
     quit_game= False
-    
-    #background colour
-    screen.fill(grey)
 
-    #Lines on background
-    pygame.draw.rect(screen,white,[250,0,4,1000])
+    Car_x_change = 10
 
-    pygame.draw.rect(screen,white,[500,0,4,1000])
+    #Car code
+    while not quit_game:
+        for event in pygame.event.get():
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_LEFT:
+                    Car_x_change = -20
+                elif event.key == pygame.K_RIGHT:
+                    Car_x_change = 20
+               
+        #background colour
+        screen.fill(grey)
 
-    pygame.draw.rect(screen,white,[750,0,4,1000])
+        #Lines on background
+        pygame.draw.rect(screen,white,[250,0,4,1000])
 
-    pygame.draw.rect(screen,yellow,[1,0,4,1000])
+        pygame.draw.rect(screen,white,[500,0,4,1000])
 
-    pygame.draw.rect(screen,yellow,[995,0,4,1000])
+        pygame.draw.rect(screen,white,[750,0,4,1000])
 
-    #Player Car Code
-    Car_Car = pygame.Rect(Car_x, Car_y, 20, 20)
-    Car = pygame.image.load( 'car_1.png' ).convert_alpha()
-    resized_Car = pygame.transform.smoothscale(Car, [ 100,170 ])
-    screen.blit(resized_Car, Car_Car)
+        pygame.draw.rect(screen,yellow,[1,0,4,1000])
 
+        pygame.draw.rect(screen,yellow,[995,0,4,1000])
 
-    #Update Screen
-    pygame.display.update()
+        #Player Car Code
+        Car_Car = pygame.Rect(Car_x, Car_y, 20, 20)
+        Car = pygame.image.load( 'car_1.png' ).convert_alpha()
+        resized_Car = pygame.transform.smoothscale(Car, [ 100,170 ])
+        screen.blit(resized_Car, Car_Car)
 
-    
-     
+        Car_x += Car_x_change
+        #Update Screen
+        pygame.display.update()
+
 game_loop()
