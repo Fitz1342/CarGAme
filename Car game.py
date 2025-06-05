@@ -35,7 +35,7 @@ Car_y = 525
    
 #Defining game loop
 def game_loop():
-    global Car_x, Car_y
+    global Car_x, Car_x_change
     quit_game= False
 
     Car_x_change = 10
@@ -48,7 +48,7 @@ def game_loop():
                     Car_x_change = -20
                 elif event.key == pygame.K_RIGHT:
                     Car_x_change = 20
-               
+
         #background colour
         screen.fill(grey)
 
@@ -70,7 +70,14 @@ def game_loop():
         screen.blit(resized_Car, Car_Car)
 
         Car_x += Car_x_change
-        #Update Screen
+
+        if Car_x >= 1000 or Car_x <0:
+            Car_x_change = 1
+            
+            
+        
+            #Update Screen
         pygame.display.update()
+        clock.tick(25)
 
 game_loop()
