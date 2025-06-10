@@ -32,13 +32,24 @@ font = pygame.font.Font("freesansbold.ttf", 50)
 #Starting cords for Player car
 Car_x = 325
 Car_y = 525
-   
+#Starting cords for Player Bot1
+Bot1_x = 75
+Bot1_y = 200
+#Starting cords for Player Bot2
+Bot2_x = 325
+Bot2_y = 200
+#Starting cords for Player Bot3
+Bot3_x = 575
+Bot3_y = 200
+#Starting cords for Player Bot4
+Bot4_x = 825
+Bot4_y = 200
 #Defining game loop
 def game_loop():
     global Car_x, Car_x_change
     quit_game= False
 
-    Car_x_change = 10
+    Car_x_change = 0
 
     #Car code
     while not quit_game:
@@ -48,6 +59,11 @@ def game_loop():
                     Car_x_change = -20
                 elif event.key == pygame.K_RIGHT:
                     Car_x_change = 20
+            if event.type == pygame.KEYUP:
+                if event.key == pygame.K_LEFT:
+                    Car_x_change = 0
+                elif event.key == pygame.K_RIGHT:
+                    Car_x_change = 0
 
         #background colour
         screen.fill(grey)
@@ -68,13 +84,35 @@ def game_loop():
         Car = pygame.image.load( 'car_1.png' ).convert_alpha()
         resized_Car = pygame.transform.smoothscale(Car, [ 100,170 ])
         screen.blit(resized_Car, Car_Car)
-
+        #Bot1 Code
+        Bot1_Bot1 = pygame.Rect(Bot1_x, Bot1_y, 20, 20)
+        Bot1 = pygame.image.load( 'car_3.png' ).convert_alpha()
+        resized_Bot1 = pygame.transform.smoothscale(Bot1, [ 100,170 ])
+        screen.blit(resized_Bot1, Bot1_Bot1)
+        #Bot2 Code
+        Bot2_Bot2 = pygame.Rect(Bot2_x, Bot2_y, 20, 20)
+        Bot2 = pygame.image.load( 'car_4.png' ).convert_alpha()
+        resized_Bot2 = pygame.transform.smoothscale(Bot2, [ 100,170 ])
+        screen.blit(resized_Bot2, Bot2_Bot2)
+        #Bot3 Code
+        Bot3_Bot3 = pygame.Rect(Bot3_x, Bot3_y, 20, 20)
+        Bot3 = pygame.image.load( 'car_6.png' ).convert_alpha()
+        resized_Bot3 = pygame.transform.smoothscale(Bot3, [ 100,170 ])
+        screen.blit(resized_Bot3, Bot3_Bot3)
+        #Bot4 Code
+        Bot4_Bot4 = pygame.Rect(Bot4_x, Bot4_y, 20, 20)
+        Bot4 = pygame.image.load( 'car_2.png' ).convert_alpha()
+        resized_Bot4 = pygame.transform.smoothscale(Bot4, [ 100,170 ])
+        screen.blit(resized_Bot4, Bot4_Bot4)
         Car_x += Car_x_change
+        if Car_x >= 885 or Car_x <10:
+            Car_x_change = 0
 
-        if Car_x >= 1000 or Car_x <0:
-            Car_x_change = 1
-            
-            
+        #Bot1 Code
+        while not quit_game:
+            for event in pygame.event.get():
+                Bot1_y_change = -20
+          
         
             #Update Screen
         pygame.display.update()
